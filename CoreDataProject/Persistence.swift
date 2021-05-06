@@ -32,6 +32,8 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "CoreDataProject")
+        // Esben has added merge policy here
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
